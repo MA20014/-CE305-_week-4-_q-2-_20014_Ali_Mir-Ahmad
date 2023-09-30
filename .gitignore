@@ -1,32 +1,129 @@
-# Prerequisites
-*.d
+#include <iostream>
+#include <cmath>
+#include <vector>
+using namespace std;
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+int main()
+{
+    double deci;
+    cin>>deci;
+    int r;
+    double mod = deci;
+    if(deci<0)
+    {
+        r = (deci*-1);
+        mod = deci*-1;
+        cout<<mod<<endl;
+    }
+    else
+    {
+        r = deci;
+        mod = deci;
+    }
+    int arr[8];
+    int i = 0;
+    int x = r;
+    while(r > 0)
+    {
+        arr[i] = r%2;
+        i++;
+        r = r/2;
+    }
+    for(int c = i-1; c>-1;c--)
+    {
+        cout<<arr[c];
+    }
+    vector<int> newarr;
+    double d = mod - x;
+    int z = 1;
+    //cout<<d<<"this is ass"<<endl;
+    if(d < 1 )
+    {
+        int g = 1;
+        do
+        {
+            double sub = pow(2, -g);
+            if(sub > d)
+            {
+                newarr.push_back(0);
+            }
+            else if (sub <= d && sub > 0)
+            {
+                newarr.push_back(1);
+                d = d-sub;
+            }
+            else
+            {
+                break;
+            }
+            g++;
+        }while(d>0);
+    }
+    if(newarr.size() > 0)
+    {
+        cout<<'.';
+        for(int c = 0; c<newarr.size();c++)
+        {
+            cout<<newarr[c];
+        }
+    }
+    cout<<endl;
+    //cout<<i<<"    "<<newarr.size()<<endl;
+    if((i+newarr.size()) > 8)
+    {
+        cerr<<"This is invalid. END the Program"<<endl;
+        return -1;
+    }
+    //if()
+    else
+    {
+        if(deci<0)
+        {
+            cout<<"1_";
+        }
+        else
+        {
+            cout<<"0_";
+        }
+        int e = 16+i;
+        //cout<<e;
+        int array[5];
+        int number = 0;
+        while(e>0)
+        {
+            array[number] = e%2;
+            number++;
+            e = e/2;
+        }
+        for(int c = 4; c>-1;c--)
+        {
+            cout<<array[c];
+        }
+        cout<<"_";
+        int array2[8] = {0};
+        int count = 0;
+        if(i>0)
+        {
+            for(int c = i-1; c > -1; c--)
+            {
+                array2[count] = arr[c];
+                count++;
+            }
+        }
+        int subtract = 8-count;
+        int count1 = 0;
+        //cout<<endl;
+        for(int c = count; c<8;c++)
+        {
+            array2[c] = newarr[count1];
+            //cout<<c<<" is "<<array2[c]<<endl;
+            count1++;
+        }
+        for(int c = 0; c<8;c++)
+        {
+            cout<<array2[c];
+        }
+        //cout<<subtract;
+    }
+    return 0;
+}
